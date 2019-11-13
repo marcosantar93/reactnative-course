@@ -1,30 +1,41 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+
+import HeaderButton from "../components/HeaderButton";
+import { MEALS } from "../data/dummy-data";
 
 const MealDetailScreen = props => {
+  const mealId = props.navigation.getParam("mealId");
+
+  const selectedMeal = MEALS.find(meal => meal.id === mealId);
+
   return (
     <View style={styles.screen}>
-      <Text>The MealDetailScreen!</Text>
-      <Button
-        title="Go back"
-        onPress={() => {
-          props.navigation.goBack(); // available in other navigators besides stack
-        }}
-      />
-      <Button
-        title="Pop"
-        onPress={() => {
-          props.navigation.pop();
-        }}
-      />
-      <Button
-        title="Pop to top"
-        onPress={() => {
-          props.navigation.popToTop();
-        }}
-      />
+      <Text>{selectedMeal.title}</Text>
     </View>
   );
+};
+
+MealDetailScreen.navigationOptions = navigationData => {
+  const mealId = navigationData.navigation.getParam("mealId");
+
+  const selectedMeal = MEALS.find(meal => meal.id === mealId);
+
+  return {
+    headerTitle: selectedMeal.title,
+    headerRight: (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Favorite"
+          iconName="ios-star"
+          onPress={() => {
+            console.log("Fav");
+          }}
+        />
+      </HeaderButtons>
+    )
+  };
 };
 
 const styles = StyleSheet.create({
