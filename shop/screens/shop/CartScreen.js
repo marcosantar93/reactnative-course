@@ -61,7 +61,7 @@ const CartScreen = props => {
 };
 
 CartScreen.navigationOptions = {
-  headerTitle: "Cart"
+  headerTitle: "Your Cart"
 };
 
 const styles = StyleSheet.create({
