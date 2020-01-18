@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   View,
+  Text,
   FlatList,
   Platform,
   Button,
@@ -59,6 +60,14 @@ const UserProductsScreen = props => {
         <ActivityIndicator size="large" color={Colors.primary} />
       </View>
     );
+  }
+
+  if(userProducts.length === 0){
+    return(
+      <View style={styles.centered}>
+        <Text>No products found, maybe start creating some</Text>
+      </View>
+    )
   }
 
   return (
