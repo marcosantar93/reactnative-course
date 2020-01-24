@@ -7,19 +7,24 @@ import {
   TextInput,
   StyleSheet
 } from "react-native";
+import { useDispatch } from "react-redux";
 
 import { Colors } from "react-native/Libraries/NewAppScreen";
+import * as placesActions from "../store/places-actions";
 
 const NewPlaceScreen = props => {
   const [titleValue, setTitleValue] = useState("");
+
+  const dispatch = useDispatch();
 
   const titleChangeHandler = text => {
     setTitleValue(text);
   };
 
   savePlaceHandler = () => {
-
-  }
+    dispatch(placesActions.addPlace(titleValue));
+    props.navigation.goBack();
+  };
 
   return (
     <ScrollView>
@@ -30,7 +35,11 @@ const NewPlaceScreen = props => {
           onChangeText={titleChangeHandler}
           value={titleValue}
         />
-        <Button title="Save Place" color={Colors.primary} onPress={savePlaceHandler} />
+        <Button
+          title="Save Place"
+          color={Colors.primary}
+          onPress={savePlaceHandler}
+        />
       </View>
     </ScrollView>
   );
