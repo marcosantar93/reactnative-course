@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useDispatch } from "react-redux";
 
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import Colors from "../constants/Colors";
 import * as placesActions from "../store/places-actions";
 import ImagePicker from "../components/ImagePicker";
 
